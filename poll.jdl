@@ -1,0 +1,21 @@
+entity Umfrage {
+	ID Integer required,
+    Name String required,
+    Text String required,
+    Status String required
+ 
+}
+entity Antwort {
+	ID Integer required,
+    PollID Integer required,
+    Text String required
+ 
+}
+
+/**
+ * One to many relationship.
+ */
+relationship OneToMany {
+    Umfrage to Antwort
+}
+

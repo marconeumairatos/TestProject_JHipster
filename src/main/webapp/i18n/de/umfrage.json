@@ -1,0 +1,26 @@
+{
+  "jpollApp": {
+    "umfrage": {
+      "home": {
+        "title": "Umfrages",
+        "createLabel": "Umfrage erstellen",
+        "createOrEditLabel": "Umfrage erstellen oder bearbeiten",
+        "search": "Suche nach Umfrage",
+        "notFound": "No Umfrages found"
+      },
+      "created": "Umfrage erstellt mit ID {{ param }}",
+      "updated": "Umfrage aktualisiert mit ID {{ param }}",
+      "deleted": "Umfrage gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Umfrage {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Umfrage"
+      },
+      "name": "Name",
+      "text": "Text",
+      "status": "Status",
+      "antwort": "Antwort"
+    }
+  }
+}

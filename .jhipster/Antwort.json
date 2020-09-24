@@ -1,0 +1,39 @@
+{
+  "name": "Antwort",
+  "fields": [
+    {
+      "fieldName": "pollID",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "text",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "umfrage",
+      "otherEntityRelationshipName": "antwort",
+      "relationshipName": "umfrage",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20200924110709",
+  "entityTableName": "antwort",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

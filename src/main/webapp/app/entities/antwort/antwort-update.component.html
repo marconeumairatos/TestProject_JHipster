@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-antwort-heading" jhiTranslate="jpollApp.antwort.home.createOrEditLabel">Create or edit a Antwort</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jpollApp.antwort.pollID" for="field_pollID">Poll ID</label>
+                    <input type="number" class="form-control" name="pollID" id="field_pollID"
+                           formControlName="pollID"/>
+                    <div *ngIf="editForm.get('pollID')!.invalid && (editForm.get('pollID')!.dirty || editForm.get('pollID')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('pollID')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('pollID')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jpollApp.antwort.text" for="field_text">Text</label>
+                    <input type="text" class="form-control" name="text" id="field_text"
+                           formControlName="text"/>
+                    <div *ngIf="editForm.get('text')!.invalid && (editForm.get('text')!.dirty || editForm.get('text')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('text')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jpollApp.antwort.umfrage" for="field_umfrage">Umfrage</label>
+                    <select class="form-control" id="field_umfrage" name="umfrage" formControlName="umfrage">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="umfrageOption.id === editForm.get('umfrage')!.value?.id ? editForm.get('umfrage')!.value : umfrageOption" *ngFor="let umfrageOption of umfrages; trackBy: trackById">{{ umfrageOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "jpollApp": {
+    "antwort": {
+      "home": {
+        "title": "Antworts",
+        "createLabel": "Create a new Antwort",
+        "createOrEditLabel": "Create or edit a Antwort",
+        "search": "Search for Antwort",
+        "notFound": "No Antworts found"
+      },
+      "created": "A new Antwort is created with identifier {{ param }}",
+      "updated": "A Antwort is updated with identifier {{ param }}",
+      "deleted": "A Antwort is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Antwort {{ id }}?"
+      },
+      "detail": {
+        "title": "Antwort"
+      },
+      "pollID": "Poll ID",
+      "text": "Text",
+      "umfrage": "Umfrage"
+    }
+  }
+}

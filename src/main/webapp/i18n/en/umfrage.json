@@ -1,0 +1,26 @@
+{
+  "jpollApp": {
+    "umfrage": {
+      "home": {
+        "title": "Umfrages",
+        "createLabel": "Create a new Umfrage",
+        "createOrEditLabel": "Create or edit a Umfrage",
+        "search": "Search for Umfrage",
+        "notFound": "No Umfrages found"
+      },
+      "created": "A new Umfrage is created with identifier {{ param }}",
+      "updated": "A Umfrage is updated with identifier {{ param }}",
+      "deleted": "A Umfrage is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Umfrage {{ id }}?"
+      },
+      "detail": {
+        "title": "Umfrage"
+      },
+      "name": "Name",
+      "text": "Text",
+      "status": "Status",
+      "antwort": "Antwort"
+    }
+  }
+}

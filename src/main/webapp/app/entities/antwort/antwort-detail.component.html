@@ -1,0 +1,40 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="antwort">
+            <h2><span jhiTranslate="jpollApp.antwort.detail.title">Antwort</span> {{ antwort.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jpollApp.antwort.pollID">Poll ID</span></dt>
+                <dd>
+                    <span>{{ antwort.pollID }}</span>
+                </dd>
+                <dt><span jhiTranslate="jpollApp.antwort.text">Text</span></dt>
+                <dd>
+                    <span>{{ antwort.text }}</span>
+                </dd>
+                <dt><span jhiTranslate="jpollApp.antwort.umfrage">Umfrage</span></dt>
+                <dd>
+                    <div *ngIf="antwort.umfrage">
+                        <a [routerLink]="['/umfrage', antwort.umfrage?.id, 'view']">{{ antwort.umfrage?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/antwort', antwort.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
