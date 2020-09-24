@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.marconation.jhp",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "6.10.3",
+    "applicationType": "monolith",
+    "baseName": "jpoll",
+    "packageName": "com.marconation.jhp",
+    "packageFolder": "com/marconation/jhp",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "gradle",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDQ0YTBjNTVmMjcxNjJiNDQyM2E3YjU3YmFkOGU2Yzc5MmMyZjQxYWQ1NTExMmY0ODM4N2ZhM2M2ZTc3NWIwNGNjYzcxZDIwNDVmOGU0YzBhN2NjNmRiMDkzYjMxMjdhNGFiYmQyZWZkM2Q3NzVlNzNjZTFkODk1ZmQ1MGVjYjE=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "creationTimestamp": 1600938349308,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": ["en", "de"],
+    "blueprints": []
+  }
+}
