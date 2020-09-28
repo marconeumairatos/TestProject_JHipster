@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<polls>
+    <poll>
+        <PollID>11</PollID>
+        <answer>Tampa Bay </answer>
+    </poll>
+
+    <poll>
+        <PollID>12</PollID>
+        <answer>ABC</answer>
+    </poll>
+</polls>
+
