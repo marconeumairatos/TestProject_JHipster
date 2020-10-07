@@ -142,4 +142,10 @@ public class UmfrageResource {
             .stream(umfrageSearchRepository.search(queryStringQuery(query)).spliterator(), false)
         .collect(Collectors.toList());
     }
+
+
+
+
+
+    
 }

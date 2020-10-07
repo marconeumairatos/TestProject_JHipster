@@ -26,10 +26,6 @@ public class Antwort implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "poll_id", nullable = false)
-    private Integer pollID;
-
-    @NotNull
     @Column(name = "text", nullable = false)
     private String text;
 
@@ -44,19 +40,6 @@ public class Antwort implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getPollID() {
-        return pollID;
-    }
-
-    public Antwort pollID(Integer pollID) {
-        this.pollID = pollID;
-        return this;
-    }
-
-    public void setPollID(Integer pollID) {
-        this.pollID = pollID;
     }
 
     public String getText() {
@@ -107,7 +90,6 @@ public class Antwort implements Serializable {
     public String toString() {
         return "Antwort{" +
             "id=" + getId() +
-            ", pollID=" + getPollID() +
             ", text='" + getText() + "'" +
             "}";
     }

@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="umfrage">
-            <h2><span >{{ umfrage.name }}&nbsp;({{umfrage.id}})</span></h2>
+            <h2><span >{{ umfrage.name }}</span></h2>
 
             <hr>
 
@@ -22,7 +22,15 @@
                 </dd>
                 <dt><span>Abstimmen</span></dt>
                 <dd>
-                  <!--   <span>{{ umfrage.status }}</span>-->
+                    <div *ngFor="let antwort of antworts" >
+                        
+                            <label for="{{antwort.text}}" *ngIf="antwort.umfrage?.id ===umfrage.id">
+                                <input [value]='antwort.text' type="radio" name="antworts">
+                                {{antwort.text}}
+                            </label>
+                    </div>
+                    
+
                 </dd>
             </dl>
 
@@ -37,6 +45,11 @@
                     [routerLink]="['/umfrage', umfrage.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                <fa-icon icon="arrow-right"></fa-icon>&nbsp;<span>Confirm</span>
             </button>
         </div>
     </div>

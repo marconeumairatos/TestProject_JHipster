@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(AntwortService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Antwort(0, 0, 'AAAAAAA');
+      elemDefault = new Antwort(0, 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -54,7 +54,6 @@ describe('Service Tests', () => {
       it('should update a Antwort', () => {
         const returnedFromService = Object.assign(
           {
-            pollID: 1,
             text: 'BBBBBB',
           },
           elemDefault
@@ -72,7 +71,6 @@ describe('Service Tests', () => {
       it('should return a list of Antwort', () => {
         const returnedFromService = Object.assign(
           {
-            pollID: 1,
             text: 'BBBBBB',
           },
           elemDefault

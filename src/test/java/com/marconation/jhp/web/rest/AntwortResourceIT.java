@@ -37,9 +37,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class AntwortResourceIT {
 
-    private static final Integer DEFAULT_POLL_ID = 1;
-    private static final Integer UPDATED_POLL_ID = 2;
-
     private static final String DEFAULT_TEXT = "AAAAAAAAAA";
     private static final String UPDATED_TEXT = "BBBBBBBBBB";
 
@@ -70,7 +67,6 @@ public class AntwortResourceIT {
      */
     public static Antwort createEntity(EntityManager em) {
         Antwort antwort = new Antwort()
-            .pollID(DEFAULT_POLL_ID)
             .text(DEFAULT_TEXT);
         return antwort;
     }
@@ -82,7 +78,6 @@ public class AntwortResourceIT {
      */
     public static Antwort createUpdatedEntity(EntityManager em) {
         Antwort antwort = new Antwort()
-            .pollID(UPDATED_POLL_ID)
             .text(UPDATED_TEXT);
         return antwort;
     }
@@ -106,7 +101,6 @@ public class AntwortResourceIT {
         List<Antwort> antwortList = antwortRepository.findAll();
         assertThat(antwortList).hasSize(databaseSizeBeforeCreate + 1);
         Antwort testAntwort = antwortList.get(antwortList.size() - 1);
-        assertThat(testAntwort.getPollID()).isEqualTo(DEFAULT_POLL_ID);
         assertThat(testAntwort.getText()).isEqualTo(DEFAULT_TEXT);
 
         // Validate the Antwort in Elasticsearch
@@ -138,25 +132,6 @@ public class AntwortResourceIT {
 
     @Test
     @Transactional
-    public void checkPollIDIsRequired() throws Exception {
-        int databaseSizeBeforeTest = antwortRepository.findAll().size();
-        // set the field null
-        antwort.setPollID(null);
-
-        // Create the Antwort, which fails.
-
-
-        restAntwortMockMvc.perform(post("/api/antworts")
-            .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(antwort)))
-            .andExpect(status().isBadRequest());
-
-        List<Antwort> antwortList = antwortRepository.findAll();
-        assertThat(antwortList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkTextIsRequired() throws Exception {
         int databaseSizeBeforeTest = antwortRepository.findAll().size();
         // set the field null
@@ -185,7 +160,6 @@ public class AntwortResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(antwort.getId().intValue())))
-            .andExpect(jsonPath("$.[*].pollID").value(hasItem(DEFAULT_POLL_ID)))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)));
     }
     
@@ -200,7 +174,6 @@ public class AntwortResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(antwort.getId().intValue()))
-            .andExpect(jsonPath("$.pollID").value(DEFAULT_POLL_ID))
             .andExpect(jsonPath("$.text").value(DEFAULT_TEXT));
     }
     @Test
@@ -224,7 +197,6 @@ public class AntwortResourceIT {
         // Disconnect from session so that the updates on updatedAntwort are not directly saved in db
         em.detach(updatedAntwort);
         updatedAntwort
-            .pollID(UPDATED_POLL_ID)
             .text(UPDATED_TEXT);
 
         restAntwortMockMvc.perform(put("/api/antworts")
@@ -236,7 +208,6 @@ public class AntwortResourceIT {
         List<Antwort> antwortList = antwortRepository.findAll();
         assertThat(antwortList).hasSize(databaseSizeBeforeUpdate);
         Antwort testAntwort = antwortList.get(antwortList.size() - 1);
-        assertThat(testAntwort.getPollID()).isEqualTo(UPDATED_POLL_ID);
         assertThat(testAntwort.getText()).isEqualTo(UPDATED_TEXT);
 
         // Validate the Antwort in Elasticsearch
@@ -297,7 +268,6 @@ public class AntwortResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(antwort.getId().intValue())))
-            .andExpect(jsonPath("$.[*].pollID").value(hasItem(DEFAULT_POLL_ID)))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)));
     }
 }

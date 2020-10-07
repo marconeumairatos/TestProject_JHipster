@@ -1,0 +1,5 @@
+{
+  "pollID": "1",
+  "teststring": "Marco Roca",
+  "answers": [{ "userID": "1", "answerID": "Hello" }]
+}

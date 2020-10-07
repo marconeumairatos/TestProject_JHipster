@@ -7,7 +7,6 @@ entity Umfrage {
 }
 entity Antwort {
 	ID Integer required,
-    PollID Integer required,
     Text String required
  
 }

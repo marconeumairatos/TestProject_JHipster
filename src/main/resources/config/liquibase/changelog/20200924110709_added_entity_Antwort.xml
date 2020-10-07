@@ -16,9 +16,6 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="poll_id" type="integer">
-                <constraints nullable="false" />
-            </column>
             <column name="text" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
@@ -48,7 +45,6 @@
                   separator=";"
                   tableName="antwort">
             <column name="id" type="numeric"/>
-            <column name="poll_id" type="numeric"/>
             <column name="text" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

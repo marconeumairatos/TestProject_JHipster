@@ -20,7 +20,6 @@ export class AntwortUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    pollID: [null, [Validators.required]],
     text: [null, [Validators.required]],
     umfrage: [],
   });
@@ -43,7 +42,6 @@ export class AntwortUpdateComponent implements OnInit {
   updateForm(antwort: IAntwort): void {
     this.editForm.patchValue({
       id: antwort.id,
-      pollID: antwort.pollID,
       text: antwort.text,
       umfrage: antwort.umfrage,
     });
@@ -67,7 +65,6 @@ export class AntwortUpdateComponent implements OnInit {
     return {
       ...new Antwort(),
       id: this.editForm.get(['id'])!.value,
-      pollID: this.editForm.get(['pollID'])!.value,
       text: this.editForm.get(['text'])!.value,
       umfrage: this.editForm.get(['umfrage'])!.value,
     };

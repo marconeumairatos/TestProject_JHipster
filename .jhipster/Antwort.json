@@ -2,13 +2,6 @@
   "name": "Antwort",
   "fields": [
     {
-      "fieldName": "pollID",
-      "fieldType": "Integer",
-      "fieldValidateRules": [
-        "required"
-      ]
-    },
-    {
       "fieldName": "text",
       "fieldType": "String",
       "fieldValidateRules": [
