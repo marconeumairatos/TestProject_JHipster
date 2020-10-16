@@ -1,11 +1,11 @@
 <div>
     <h2 id="page-heading">
-        <span jhiTranslate="jpollApp.umfrage.home.title">Umfrages</span>
+        <span jhiTranslate="jpollApp.userAntwort.home.title">User Antworts</span>
 
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-umfrage" [routerLink]="['/umfrage/new']">
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-user-antwort" [routerLink]="['/user-antwort/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span class="hidden-sm-down"  jhiTranslate="jpollApp.umfrage.home.createLabel">
-            Create a new Umfrage
+            <span class="hidden-sm-down"  jhiTranslate="jpollApp.userAntwort.home.createLabel">
+            Create a new User Antwort
             </span>
         </button>
     </h2>
@@ -18,7 +18,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jpollApp.umfrage.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jpollApp.userAntwort.home.search' | translate }}">
 
                     <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
                         <fa-icon icon="search"></fa-icon>
@@ -32,44 +32,52 @@
         </div>
     </div>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="umfrages?.length === 0">
-        <span jhiTranslate="jpollApp.umfrage.home.notFound">No umfrages found</span>
+    <div class="alert alert-warning" id="no-result" *ngIf="userAntworts?.length === 0">
+        <span jhiTranslate="jpollApp.userAntwort.home.notFound">No userAntworts found</span>
     </div>
 
-    <div class="table-responsive" id="entities" *ngIf="umfrages && umfrages.length > 0">
+    <div class="table-responsive" id="entities" *ngIf="userAntworts && userAntworts.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
-                    <th scope="col" ><span jhiTranslate="jpollApp.umfrage.name">Name</span></th>
-                    <th scope="col" ><span jhiTranslate="jpollApp.umfrage.text">Text</span></th>
-                    <th scope="col" ><span jhiTranslate="jpollApp.umfrage.status">Status</span></th>
+                    <th scope="col" ><span jhiTranslate="jpollApp.userAntwort.user">User</span></th>
+                    <th scope="col" ><span jhiTranslate="jpollApp.userAntwort.umfrage">Umfrage</span></th>
+                    <th scope="col" ><span jhiTranslate="jpollApp.userAntwort.antwort">Antwort</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let umfrage of umfrages ;trackBy: trackId">
-                    <td><a [routerLink]="['/umfrage', umfrage.id, 'view']">{{ umfrage.id }}</a></td>
-                    <td>{{ umfrage.name }}</td>
-                    <td>{{ umfrage.text }}</td>
-                    <td>{{ umfrage.status }}</td>
+                <tr *ngFor="let userAntwort of userAntworts ;trackBy: trackId">
+                    <td><a [routerLink]="['/user-antwort', userAntwort.id, 'view']">{{ userAntwort.id }}</a></td>
+                    <td>{{ userAntwort.user }}</td>
+                    <td>
+                        <div *ngIf="userAntwort.umfrage">
+                            <a [routerLink]="['/umfrage', userAntwort.umfrage?.id, 'view']" >{{ userAntwort.umfrage?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="userAntwort.antwort">
+                            <a [routerLink]="['/antwort', userAntwort.antwort?.id, 'view']" >{{ userAntwort.antwort?.id }}</a>
+                        </div>
+                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
-                                    [routerLink]="['/umfrage', umfrage.id, 'view']"
+                                    [routerLink]="['/user-antwort', userAntwort.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
                             <button type="submit"
-                                    [routerLink]="['/umfrage', umfrage.id, 'edit']"
+                                    [routerLink]="['/user-antwort', userAntwort.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
-                            <button type="submit" (click)="delete(umfrage)"
+                            <button type="submit" (click)="delete(userAntwort)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
                                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>

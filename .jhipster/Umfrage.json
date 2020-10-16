@@ -29,6 +29,12 @@
       "otherEntityName": "antwort",
       "otherEntityRelationshipName": "umfrage",
       "relationshipName": "antwort"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "userAntwort",
+      "otherEntityRelationshipName": "umfrage",
+      "relationshipName": "userAntwort"
     }
   ],
   "changelogDate": "20200924110609",

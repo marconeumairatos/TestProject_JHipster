@@ -9,6 +9,8 @@ import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Antwort.
@@ -28,6 +30,10 @@ public class Antwort implements Serializable {
     @NotNull
     @Column(name = "text", nullable = false)
     private String text;
+
+    @OneToMany(mappedBy = "antwort")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<UserAntwort> userAntworts = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "antworts", allowSetters = true)
@@ -53,6 +59,31 @@ public class Antwort implements Serializable {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Set<UserAntwort> getUserAntworts() {
+        return userAntworts;
+    }
+
+    public Antwort userAntworts(Set<UserAntwort> userAntworts) {
+        this.userAntworts = userAntworts;
+        return this;
+    }
+
+    public Antwort addUserAntwort(UserAntwort userAntwort) {
+        this.userAntworts.add(userAntwort);
+        userAntwort.setAntwort(this);
+        return this;
+    }
+
+    public Antwort removeUserAntwort(UserAntwort userAntwort) {
+        this.userAntworts.remove(userAntwort);
+        userAntwort.setAntwort(null);
+        return this;
+    }
+
+    public void setUserAntworts(Set<UserAntwort> userAntworts) {
+        this.userAntworts = userAntworts;
     }
 
     public Umfrage getUmfrage() {

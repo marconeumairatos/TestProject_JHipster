@@ -1,7 +1,7 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <div *ngIf="umfrage">
-            <h2><span >{{ umfrage.name }}</span></h2>
+            <h2><span jhiTranslate="jpollApp.umfrage.detail.title">Umfrage</span> {{ umfrage.id }}</h2>
 
             <hr>
 
@@ -20,18 +20,11 @@
                 <dd>
                     <span>{{ umfrage.status }}</span>
                 </dd>
-                <dt><span>Abstimmen</span></dt>
-                <dd>
-                    <div *ngFor="let antwort of antworts" >
-                        
-                            <label for="{{antwort.text}}" *ngIf="antwort.umfrage?.id ===umfrage.id">
-                                <input [value]='antwort.text' type="radio" name="antworts">
-                                {{antwort.text}}
-                            </label>
-                    </div>
-                    
+                
 
-                </dd>
+                <div *ngFor="let antwort of antworts">
+                    <input name="antwortbutton" type="radio">{{antwort.text}}
+                </div>                
             </dl>
 
             <button type="submit"
@@ -41,15 +34,14 @@
             </button>
 
             <button type="button"
-                    *jhiHasAnyAuthority="'ROLE_ADMIN'" 
                     [routerLink]="['/umfrage', umfrage.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
             </button>
 
-            <button type="submit"
+            <button type="button"
                     class="btn btn-primary">
-                <fa-icon icon="arrow-right"></fa-icon>&nbsp;<span>Confirm</span>
+                <fa-icon icon="check-circle"></fa-icon>&nbsp;<span>Vote</span>
             </button>
         </div>
     </div>

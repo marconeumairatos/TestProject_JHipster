@@ -20,7 +20,8 @@
       "name": "Name",
       "text": "Text",
       "status": "Status",
-      "antwort": "Antwort"
+      "antwort": "Antwort",
+      "userAntwort": "User Antwort"
     }
   }
 }

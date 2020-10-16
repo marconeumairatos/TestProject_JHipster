@@ -42,6 +42,10 @@ public class Umfrage implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Antwort> antworts = new HashSet<>();
 
+    @OneToMany(mappedBy = "umfrage")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<UserAntwort> userAntworts = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -113,6 +117,31 @@ public class Umfrage implements Serializable {
 
     public void setAntworts(Set<Antwort> antworts) {
         this.antworts = antworts;
+    }
+
+    public Set<UserAntwort> getUserAntworts() {
+        return userAntworts;
+    }
+
+    public Umfrage userAntworts(Set<UserAntwort> userAntworts) {
+        this.userAntworts = userAntworts;
+        return this;
+    }
+
+    public Umfrage addUserAntwort(UserAntwort userAntwort) {
+        this.userAntworts.add(userAntwort);
+        userAntwort.setUmfrage(this);
+        return this;
+    }
+
+    public Umfrage removeUserAntwort(UserAntwort userAntwort) {
+        this.userAntworts.remove(userAntwort);
+        userAntwort.setUmfrage(null);
+        return this;
+    }
+
+    public void setUserAntworts(Set<UserAntwort> userAntworts) {
+        this.userAntworts = userAntworts;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

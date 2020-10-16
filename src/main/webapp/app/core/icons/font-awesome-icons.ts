@@ -1,4 +1,6 @@
 import {
+  faArrowRight,
+  faCheckCircle,
   faUser,
   faSort,
   faSortUp,
@@ -72,4 +74,6 @@ export const fontAwesomeIcons = [
   faTrashAlt,
   // jhipster-needle-add-icon-import
   faAsterisk,
+  faCheckCircle,
+  faArrowRight,
 ];

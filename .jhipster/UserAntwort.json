@@ -1,8 +1,8 @@
 {
-  "name": "Antwort",
+  "name": "UserAntwort",
   "fields": [
     {
-      "fieldName": "text",
+      "fieldName": "user",
       "fieldType": "String",
       "fieldValidateRules": [
         "required"
@@ -11,21 +11,22 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-many",
-      "otherEntityName": "userAntwort",
-      "otherEntityRelationshipName": "antwort",
-      "relationshipName": "userAntwort"
+      "relationshipType": "many-to-one",
+      "otherEntityName": "umfrage",
+      "otherEntityRelationshipName": "userAntwort",
+      "relationshipName": "umfrage",
+      "otherEntityField": "id"
     },
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "umfrage",
-      "otherEntityRelationshipName": "antwort",
-      "relationshipName": "umfrage",
+      "otherEntityName": "antwort",
+      "otherEntityRelationshipName": "userAntwort",
+      "relationshipName": "antwort",
       "otherEntityField": "id"
     }
   ],
-  "changelogDate": "20200924110709",
-  "entityTableName": "antwort",
+  "changelogDate": "20201016101345",
+  "entityTableName": "user_antwort",
   "dto": "no",
   "pagination": "no",
   "service": "no",

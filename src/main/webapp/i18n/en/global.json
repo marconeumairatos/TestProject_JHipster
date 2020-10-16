@@ -9,6 +9,7 @@
         "main": "Entities",
         "umfrage": "Umfrage",
         "antwort": "Antwort",
+        "userAntwort": "User Antwort",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -18,6 +18,7 @@
         "title": "Antwort"
       },
       "text": "Text",
+      "userAntwort": "User Antwort",
       "umfrage": "Umfrage"
     }
   }

@@ -24,6 +24,15 @@ import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.jpa.domain.Specification;
+import java.util.ArrayList;
+import javax.persistence.criteria.*;
+  
+
 /**
  * REST controller for managing {@link com.marconation.jhp.domain.Antwort}.
  */
@@ -141,5 +150,23 @@ public class AntwortResource {
         return StreamSupport
             .stream(antwortSearchRepository.search(queryStringQuery(query)).spliterator(), false)
         .collect(Collectors.toList());
+    }
+
+      /**
+     * {@code GET  /antworts/:id} : get the "id" antwort.
+     *
+     * @param id the id of the antwort to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the antwort, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/antwortsbyumfrage({id}")
+    public List<Antwort> findByUmfrageId(Long id){
+        return antwortRepository.findAll(new Specification<Antwort>() {
+            @Override
+            public Predicate toPredicate(Root<Antwort> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                List<Predicate> predicates = new ArrayList<>();
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("umfrageid"), id)));
+                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
+            }
+        });
     }
 }
