@@ -158,15 +158,19 @@ public class AntwortResource {
      * @param id the id of the antwort to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the antwort, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/antwortsbyumfrage({id}")
-    public List<Antwort> findByUmfrageId(Long id){
-        return antwortRepository.findAll(new Specification<Antwort>() {
-            @Override
-            public Predicate toPredicate(Root<Antwort> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                List<Predicate> predicates = new ArrayList<>();
-                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("umfrageid"), id)));
-                return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-            }
-        });
+    @GetMapping("/antwortsbyumfrage{id}")
+    public List<Antwort> getAntwortbyId(){
+
+        return antwortRepository.getAntwortbyId();
+
+
+
+    
     }
+
+
+
+
+
+
 }

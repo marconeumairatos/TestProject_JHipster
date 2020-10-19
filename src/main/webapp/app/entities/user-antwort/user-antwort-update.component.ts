@@ -11,6 +11,8 @@ import { IUmfrage } from 'app/shared/model/umfrage.model';
 import { UmfrageService } from 'app/entities/umfrage/umfrage.service';
 import { IAntwort } from 'app/shared/model/antwort.model';
 import { AntwortService } from 'app/entities/antwort/antwort.service';
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/user/account.model';
 
 type SelectableEntity = IUmfrage | IAntwort;
 
@@ -22,6 +24,7 @@ export class UserAntwortUpdateComponent implements OnInit {
   isSaving = false;
   umfrages: IUmfrage[] = [];
   antworts: IAntwort[] = [];
+  account!: Account;
 
   editForm = this.fb.group({
     id: [],
@@ -34,6 +37,7 @@ export class UserAntwortUpdateComponent implements OnInit {
     protected userAntwortService: UserAntwortService,
     protected umfrageService: UmfrageService,
     protected antwortService: AntwortService,
+    protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -51,7 +55,7 @@ export class UserAntwortUpdateComponent implements OnInit {
   updateForm(userAntwort: IUserAntwort): void {
     this.editForm.patchValue({
       id: userAntwort.id,
-      user: userAntwort.user,
+      // user: userAntwort.user,
       umfrage: userAntwort.umfrage,
       antwort: userAntwort.antwort,
     });
