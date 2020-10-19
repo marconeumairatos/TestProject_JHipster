@@ -47,11 +47,11 @@ public class AntwortResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
     private final AntwortRepository antwortRepository;
 
     private final AntwortSearchRepository antwortSearchRepository;
 
+    
     public AntwortResource(AntwortRepository antwortRepository, AntwortSearchRepository antwortSearchRepository) {
         this.antwortRepository = antwortRepository;
         this.antwortSearchRepository = antwortSearchRepository;
@@ -158,10 +158,9 @@ public class AntwortResource {
      * @param id the id of the antwort to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the antwort, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/antwortsbyumfrage{id}")
-    public List<Antwort> getAntwortbyId(){
-
-        return antwortRepository.getAntwortbyId();
+    @GetMapping("/antwortforumfrage/{id}")
+    public List<Antwort> findByUmfrageId(@PathVariable Long id){
+        return antwortRepository.findByUmfrageId(id);
 
 
 

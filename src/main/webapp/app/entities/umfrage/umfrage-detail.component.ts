@@ -17,7 +17,7 @@ export class UmfrageDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ umfrage }) => (this.umfrage = umfrage));
-    this.loadAll();
+    this.loadAntwortsForUmfrage(this.umfrage?.id!);
   }
 
   previousState(): void {
@@ -26,5 +26,9 @@ export class UmfrageDetailComponent implements OnInit {
 
   loadAll(): void {
     this.antwortService.query().subscribe((res: HttpResponse<IAntwort[]>) => (this.antworts = res.body || []));
+  }
+
+  loadAntwortsForUmfrage(umfrageId: number): void {
+    this.antwortService.findByUmfrageId(umfrageId).subscribe((res: HttpResponse<IAntwort[]>) => (this.antworts = res.body || []));
   }
 }

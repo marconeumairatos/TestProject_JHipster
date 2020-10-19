@@ -2,6 +2,7 @@ package com.marconation.jhp.repository;
 
 import com.marconation.jhp.domain.Antwort;
 import java.util.List;
+import java.util.Optional;
 
 
 import org.springframework.data.jpa.repository.*;
@@ -18,6 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface AntwortRepository extends JpaRepository<Antwort, Long>,JpaSpecificationExecutor<Antwort> {
 
-@Query(value="SELECT * FROM ANTWORT JOIN UMFRAGE ON Umfrage.ID=Antwort.Umfrage_Id WHERE Umfrage.Id = 1", nativeQuery = true) 
-List<Antwort> getAntwortbyId();
-}
+
+
+    List<Antwort> findByUmfrageId(long Umfrage_Id);}
