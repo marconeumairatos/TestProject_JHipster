@@ -9,7 +9,7 @@
         <property name="autoIncrement" value="true"/>
 
     <!--
-        Added the entity UserAntwort.
+        Added the entity Userantwort.
     -->
     <changeSet id="20201016101345-1" author="jhipster">
         <createTable tableName="user_antwort">

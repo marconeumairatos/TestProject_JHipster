@@ -5,26 +5,23 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { IUserAntwort, UserAntwort } from 'app/shared/model/user-antwort.model';
-import { UserAntwortService } from './user-antwort.service';
+import { IUserantwort, Userantwort } from 'app/shared/model/userantwort.model';
+import { UserantwortService } from './userantwort.service';
 import { IUmfrage } from 'app/shared/model/umfrage.model';
 import { UmfrageService } from 'app/entities/umfrage/umfrage.service';
 import { IAntwort } from 'app/shared/model/antwort.model';
 import { AntwortService } from 'app/entities/antwort/antwort.service';
-import { AccountService } from 'app/core/auth/account.service';
-import { Account } from 'app/core/user/account.model';
 
 type SelectableEntity = IUmfrage | IAntwort;
 
 @Component({
-  selector: 'jhi-user-antwort-update',
-  templateUrl: './user-antwort-update.component.html',
+  selector: 'jhi-userantwort-update',
+  templateUrl: './userantwort-update.component.html',
 })
-export class UserAntwortUpdateComponent implements OnInit {
+export class UserantwortUpdateComponent implements OnInit {
   isSaving = false;
   umfrages: IUmfrage[] = [];
   antworts: IAntwort[] = [];
-  account!: Account;
 
   editForm = this.fb.group({
     id: [],
@@ -34,17 +31,16 @@ export class UserAntwortUpdateComponent implements OnInit {
   });
 
   constructor(
-    protected userAntwortService: UserAntwortService,
+    protected userantwortService: UserantwortService,
     protected umfrageService: UmfrageService,
     protected antwortService: AntwortService,
-    protected accountService: AccountService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ userAntwort }) => {
-      this.updateForm(userAntwort);
+    this.activatedRoute.data.subscribe(({ userantwort }) => {
+      this.updateForm(userantwort);
 
       this.umfrageService.query().subscribe((res: HttpResponse<IUmfrage[]>) => (this.umfrages = res.body || []));
 
@@ -52,12 +48,12 @@ export class UserAntwortUpdateComponent implements OnInit {
     });
   }
 
-  updateForm(userAntwort: IUserAntwort): void {
+  updateForm(userantwort: IUserantwort): void {
     this.editForm.patchValue({
-      id: userAntwort.id,
-      // user: userAntwort.user,
-      umfrage: userAntwort.umfrage,
-      antwort: userAntwort.antwort,
+      id: userantwort.id,
+      user: userantwort.user,
+      umfrage: userantwort.umfrage,
+      antwort: userantwort.antwort,
     });
   }
 
@@ -67,17 +63,17 @@ export class UserAntwortUpdateComponent implements OnInit {
 
   save(): void {
     this.isSaving = true;
-    const userAntwort = this.createFromForm();
-    if (userAntwort.id !== undefined) {
-      this.subscribeToSaveResponse(this.userAntwortService.update(userAntwort));
+    const userantwort = this.createFromForm();
+    if (userantwort.id !== undefined) {
+      this.subscribeToSaveResponse(this.userantwortService.update(userantwort));
     } else {
-      this.subscribeToSaveResponse(this.userAntwortService.create(userAntwort));
+      this.subscribeToSaveResponse(this.userantwortService.create(userantwort));
     }
   }
 
-  private createFromForm(): IUserAntwort {
+  private createFromForm(): IUserantwort {
     return {
-      ...new UserAntwort(),
+      ...new Userantwort(),
       id: this.editForm.get(['id'])!.value,
       user: this.editForm.get(['user'])!.value,
       umfrage: this.editForm.get(['umfrage'])!.value,
@@ -85,7 +81,7 @@ export class UserAntwortUpdateComponent implements OnInit {
     };
   }
 
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IUserAntwort>>): void {
+  protected subscribeToSaveResponse(result: Observable<HttpResponse<IUserantwort>>): void {
     result.subscribe(
       () => this.onSaveSuccess(),
       () => this.onSaveError()

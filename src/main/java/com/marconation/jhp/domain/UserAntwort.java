@@ -11,13 +11,13 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
 /**
- * A UserAntwort.
+ * A Userantwort.
  */
 @Entity
 @Table(name = "user_antwort")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "userantwort")
-public class UserAntwort implements Serializable {
+public class Userantwort implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class UserAntwort implements Serializable {
         return user;
     }
 
-    public UserAntwort user(String user) {
+    public Userantwort user(String user) {
         this.user = user;
         return this;
     }
@@ -63,7 +63,7 @@ public class UserAntwort implements Serializable {
         return umfrage;
     }
 
-    public UserAntwort umfrage(Umfrage umfrage) {
+    public Userantwort umfrage(Umfrage umfrage) {
         this.umfrage = umfrage;
         return this;
     }
@@ -76,7 +76,7 @@ public class UserAntwort implements Serializable {
         return antwort;
     }
 
-    public UserAntwort antwort(Antwort antwort) {
+    public Userantwort antwort(Antwort antwort) {
         this.antwort = antwort;
         return this;
     }
@@ -91,10 +91,10 @@ public class UserAntwort implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof UserAntwort)) {
+        if (!(o instanceof Userantwort)) {
             return false;
         }
-        return id != null && id.equals(((UserAntwort) o).id);
+        return id != null && id.equals(((Userantwort) o).id);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class UserAntwort implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "UserAntwort{" +
+        return "Userantwort{" +
             "id=" + getId() +
             ", user='" + getUser() + "'" +
             "}";

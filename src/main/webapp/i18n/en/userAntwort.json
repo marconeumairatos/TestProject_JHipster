@@ -1,21 +1,21 @@
 {
   "jpollApp": {
-    "userAntwort": {
+    "userantwort": {
       "home": {
-        "title": "User Antworts",
-        "createLabel": "Create a new User Antwort",
-        "createOrEditLabel": "Create or edit a User Antwort",
-        "search": "Search for User Antwort",
-        "notFound": "No User Antworts found"
+        "title": "Userantworts",
+        "createLabel": "Create a new Userantwort",
+        "createOrEditLabel": "Create or edit a Userantwort",
+        "search": "Search for Userantwort",
+        "notFound": "No Userantworts found"
       },
-      "created": "A new User Antwort is created with identifier {{ param }}",
-      "updated": "A User Antwort is updated with identifier {{ param }}",
-      "deleted": "A User Antwort is deleted with identifier {{ param }}",
+      "created": "A new Userantwort is created with identifier {{ param }}",
+      "updated": "A Userantwort is updated with identifier {{ param }}",
+      "deleted": "A Userantwort is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete User Antwort {{ id }}?"
+        "question": "Are you sure you want to delete Userantwort {{ id }}?"
       },
       "detail": {
-        "title": "User Antwort"
+        "title": "Userantwort"
       },
       "user": "User",
       "umfrage": "Umfrage",

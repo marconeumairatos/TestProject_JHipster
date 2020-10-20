@@ -1,4 +1,4 @@
-<form *ngIf="userAntwort" name="deleteForm" (ngSubmit)="confirmDelete(userAntwort?.id!)">
+<form *ngIf="userantwort" name="deleteForm" (ngSubmit)="confirmDelete(userantwort?.id!)">
     <div class="modal-header">
         <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
 
@@ -9,7 +9,7 @@
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
 
-        <p id="jhi-delete-userAntwort-heading" jhiTranslate="jpollApp.userAntwort.delete.question" [translateValues]="{ id: userAntwort.id }">Are you sure you want to delete this User Antwort?</p>
+        <p id="jhi-delete-userantwort-heading" jhiTranslate="jpollApp.userantwort.delete.question" [translateValues]="{ id: userantwort.id }">Are you sure you want to delete this Userantwort?</p>
     </div>
 
     <div class="modal-footer">
@@ -17,7 +17,7 @@
             <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
         </button>
 
-        <button id="jhi-confirm-delete-userAntwort" type="submit" class="btn btn-danger">
+        <button id="jhi-confirm-delete-userantwort" type="submit" class="btn btn-danger">
             <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
         </button>
     </div>
