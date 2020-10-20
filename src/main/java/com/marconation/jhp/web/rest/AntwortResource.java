@@ -142,4 +142,19 @@ public class AntwortResource {
             .stream(antwortSearchRepository.search(queryStringQuery(query)).spliterator(), false)
         .collect(Collectors.toList());
     }
-}
+      /**
+     * {@code GET  /antworts/:id} : get the "id" antwort.
+     *
+     * @param id the id of the antwort to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the antwort, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/antwortforumfrage/{id}")
+    public List<Antwort> findByUmfrageId(@PathVariable Long id){
+        return antwortRepository.findByUmfrageId(id);
+
+
+
+    
+    }}
+
+

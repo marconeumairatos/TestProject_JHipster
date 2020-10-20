@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
 
 import { IUmfrage } from 'app/shared/model/umfrage.model';
-
-import { IAntwortbyUser, AntwortbyUser } from 'app/shared/model/antwortby-user.model';
-import { AntwortbyUserService } from 'app/entities/antwortby-user/antwortby-user.service';
 import { IAntwort } from 'app/shared/model/antwort.model';
 import { AntwortService } from 'app/entities/antwort/antwort.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AntwortbyUserService } from 'app/entities/antwortby-user/antwortby-user.service';
+import { IAntwortbyUser } from 'app/shared/model/antwortby-user.model';
 
 @Component({
   selector: 'jhi-umfrage-detail',
@@ -16,19 +16,23 @@ import { AntwortService } from 'app/entities/antwort/antwort.service';
 })
 export class UmfrageDetailComponent implements OnInit {
   umfrage: IUmfrage | null = null;
-  isSaving = false;
-  antworts: IAntwort[] = [];
-
+  antworts?: IAntwort[];
   editForm = this.fb.group({
     id: [],
-    userID: [null, null],
+    userID: [null, [Validators.required]],
     antwort: [],
   });
 
-  constructor(protected activatedRoute: ActivatedRoute, private fb: FormBuilder, protected antwortbyUserService: AntwortbyUserService) {}
+  constructor(
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected antwortbyUserService: AntwortbyUserService,
+    protected antwortService: AntwortService
+  ) {}
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ umfrage }) => (this.umfrage = umfrage));
+    this.loadAntwortsForUmfrage(this.umfrage?.id!);
   }
 
   updateForm(antwortbyUser: IAntwortbyUser): void {
@@ -43,42 +47,11 @@ export class UmfrageDetailComponent implements OnInit {
     window.history.back();
   }
 
-  vote(): void {
-    this.isSaving = true;
-    const antwortbyUser = this.createFromForm();
-    if (antwortbyUser.id !== undefined) {
-      this.subscribeToSaveResponse(this.antwortbyUserService.update(antwortbyUser));
-    } else {
-      this.subscribeToSaveResponse(this.antwortbyUserService.create(antwortbyUser));
-    }
+  loadAll(): void {
+    this.antwortService.query().subscribe((res: HttpResponse<IAntwort[]>) => (this.antworts = res.body || []));
   }
 
-  private createFromForm(): IAntwortbyUser {
-    return {
-      ...new AntwortbyUser(),
-      id: this.editForm.get(['id'])!.value,
-      userID: this.editForm.get(['userID'])!.value,
-      antwort: this.editForm.get(['antwort'])!.value,
-    };
-  }
-
-  protected subscribeToSaveResponse(result: Observable<HttpResponse<IAntwortbyUser>>): void {
-    result.subscribe(
-      () => this.onSaveSuccess(),
-      () => this.onSaveError()
-    );
-  }
-
-  protected onSaveSuccess(): void {
-    this.isSaving = false;
-    this.previousState();
-  }
-
-  protected onSaveError(): void {
-    this.isSaving = false;
-  }
-
-  trackById(index: number, item: IAntwort): any {
-    return item.id;
+  loadAntwortsForUmfrage(umfrageId: number): void {
+    this.antwortService.findByUmfrageId(umfrageId).subscribe((res: HttpResponse<IAntwort[]>) => (this.antworts = res.body || []));
   }
 }

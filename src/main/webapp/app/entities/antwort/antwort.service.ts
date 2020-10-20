@@ -13,6 +13,7 @@ type EntityArrayResponseType = HttpResponse<IAntwort[]>;
 export class AntwortService {
   public resourceUrl = SERVER_API_URL + 'api/antworts';
   public resourceSearchUrl = SERVER_API_URL + 'api/_search/antworts';
+  public ressourceUrlABU = SERVER_API_URL + 'api/antwortforumfrage';
 
   constructor(protected http: HttpClient) {}
 
@@ -40,5 +41,10 @@ export class AntwortService {
   search(req: Search): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IAntwort[]>(this.resourceSearchUrl, { params: options, observe: 'response' });
+  }
+
+  findByUmfrageId(req: number): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IAntwort[]>(`${this.ressourceUrlABU}/${req}`, { params: options, observe: 'response' });
   }
 }

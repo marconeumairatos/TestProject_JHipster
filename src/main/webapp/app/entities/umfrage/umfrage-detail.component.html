@@ -14,14 +14,13 @@
                 </dd>
                 <dt><span jhiTranslate="jpollApp.umfrage.text">Text</span></dt>
                 <dd>
-                    <span>{{ umfrage.text }}</span>
-                </dd>
-                <dt><span jhiTranslate="jpollApp.umfrage.status">Status</span></dt>
-                <dd>
-                    <span>{{ umfrage.status }}</span>
+                    <span>{{ umfrage.text }}</span>              
                 </dd>
             </dl>
-
+            <dt><span>Options</span></dt>
+            <div *ngFor="let antwort of antworts">
+                <input name="antwortbutton" type="radio">{{antwort.text}}
+            </div> 
             <button type="submit"
                     (click)="previousState()"
                     class="btn btn-info">
