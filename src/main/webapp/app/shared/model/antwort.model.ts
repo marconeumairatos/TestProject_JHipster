@@ -9,5 +9,5 @@ export interface IAntwort {
 }
 
 export class Antwort implements IAntwort {
-  constructor(public id?: number, public text?: string, public userAntworts?: IUserAntwort[], public umfrage?: IUmfrage) {}
+  constructor(public id?: number, public text?: string, public Userantworts?: IUserAntwort[], public umfrage?: IUmfrage) {}
 }

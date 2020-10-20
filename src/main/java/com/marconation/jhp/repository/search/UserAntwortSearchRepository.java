@@ -5,7 +5,7 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 
 /**
- * Spring Data Elasticsearch repository for the {@link Userantwort} entity.
+ * Spring Data Elasticsearch repository for the {@link UserAntwort} entity.
  */
 public interface UserantwortSearchRepository extends ElasticsearchRepository<Userantwort, Long> {
 }

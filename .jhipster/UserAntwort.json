@@ -2,8 +2,8 @@
   "name": "UserAntwort",
   "fields": [
     {
-      "fieldName": "user",
-      "fieldType": "String",
+      "fieldName": "userID",
+      "fieldType": "Integer",
       "fieldValidateRules": [
         "required"
       ]

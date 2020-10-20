@@ -11,7 +11,7 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 
 /**
- * A Userantwort.
+ * A UserAntwort.
  */
 @Entity
 @Table(name = "user_antwort")
@@ -26,8 +26,8 @@ public class Userantwort implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "user", nullable = false)
-    private String user;
+    @Column(name = "user_id", nullable = false)
+    private Integer userID;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "userAntworts", allowSetters = true)
@@ -46,17 +46,17 @@ public class Userantwort implements Serializable {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public Userantwort user(String user) {
-        this.user = user;
+    public Userantwort userID(Integer userID) {
+        this.userID = userID;
         return this;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     public Umfrage getUmfrage() {
@@ -105,9 +105,9 @@ public class Userantwort implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Userantwort{" +
+        return "UserAntwort{" +
             "id=" + getId() +
-            ", user='" + getUser() + "'" +
+            ", userID=" + getUserID() +
             "}";
     }
 }

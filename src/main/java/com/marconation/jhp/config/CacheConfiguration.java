@@ -52,8 +52,9 @@ public class CacheConfiguration {
             createCache(cm, com.marconation.jhp.domain.Umfrage.class.getName() + ".antworts");
             createCache(cm, com.marconation.jhp.domain.Antwort.class.getName());
             createCache(cm, com.marconation.jhp.domain.Umfrage.class.getName() + ".userAntworts");
-            createCache(cm, com.marconation.jhp.domain.UserAntwort.class.getName());
+            createCache(cm, com.marconation.jhp.domain.Userantwort.class.getName());
             createCache(cm, com.marconation.jhp.domain.Antwort.class.getName() + ".userAntworts");
+            createCache(cm, com.marconation.jhp.domain.Userantwort.class.getName());
             createCache(cm, com.marconation.jhp.domain.Userantwort.class.getName());
             // jhipster-needle-ehcache-add-entry
         };

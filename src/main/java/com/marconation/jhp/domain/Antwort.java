@@ -33,7 +33,7 @@ public class Antwort implements Serializable {
 
     @OneToMany(mappedBy = "antwort")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<UserAntwort> userAntworts = new HashSet<>();
+    private Set<Userantwort> userAntworts = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = "antworts", allowSetters = true)
@@ -61,28 +61,28 @@ public class Antwort implements Serializable {
         this.text = text;
     }
 
-    public Set<UserAntwort> getUserAntworts() {
+    public Set<Userantwort> getUserAntworts() {
         return userAntworts;
     }
 
-    public Antwort userAntworts(Set<UserAntwort> userAntworts) {
+    public Antwort userAntworts(Set<Userantwort> userAntworts) {
         this.userAntworts = userAntworts;
         return this;
     }
 
-    public Antwort addUserAntwort(UserAntwort userAntwort) {
+    public Antwort addUserAntwort(Userantwort userAntwort) {
         this.userAntworts.add(userAntwort);
         userAntwort.setAntwort(this);
         return this;
     }
 
-    public Antwort removeUserAntwort(UserAntwort userAntwort) {
+    public Antwort removeUserAntwort(Userantwort userAntwort) {
         this.userAntworts.remove(userAntwort);
         userAntwort.setAntwort(null);
         return this;
     }
 
-    public void setUserAntworts(Set<UserAntwort> userAntworts) {
+    public void setUserAntworts(Set<Userantwort> userAntworts) {
         this.userAntworts = userAntworts;
     }
 

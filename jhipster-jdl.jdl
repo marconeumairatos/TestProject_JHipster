@@ -11,10 +11,12 @@ entity Antwort {
  
 }
 
+
 entity UserAntwort {
 	ID Integer required,
-    User String required 
+    UserID Integer required 
 }
+
 
 
 /**

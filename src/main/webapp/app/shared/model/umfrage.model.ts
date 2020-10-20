@@ -17,6 +17,6 @@ export class Umfrage implements IUmfrage {
     public text?: string,
     public status?: string,
     public antworts?: IAntwort[],
-    public userAntworts?: IUserAntwort[]
+    public Userantworts?: IUserAntwort[]
   ) {}
 }

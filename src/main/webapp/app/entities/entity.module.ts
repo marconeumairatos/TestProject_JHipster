@@ -16,6 +16,10 @@ import { RouterModule } from '@angular/router';
         path: 'userantwort',
         loadChildren: () => import('./userantwort/userantwort.module').then(m => m.JpollUserantwortModule),
       },
+      {
+        path: 'user-antwort',
+        loadChildren: () => import('./user-antwort/user-antwort.module').then(m => m.JpollUserAntwortModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

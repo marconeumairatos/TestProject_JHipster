@@ -1,24 +1,34 @@
 <div class="row justify-content-center">
     <div class="col-8">
         <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-            <h2 id="jhi-userantwort-heading" >Create or edit a Userantwort</h2>
+            <h2 id="jhi-user-antwort-heading" jhiTranslate="jpollApp.userAntwort.home.createOrEditLabel">Create or edit a User Antwort</h2>
 
             <div>
                 <jhi-alert-error></jhi-alert-error>
 
                 <div class="form-group" [hidden]="!editForm.get('id')!.value">
-                    <label for="id">ID</label>
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label"  for="field_user">UserID</label>
-                    <input type="text" class="form-control" name="user" id="field_user"
-                           formControlName="user"/>
+                    <label class="form-control-label" jhiTranslate="jpollApp.userAntwort.userID" for="field_userID">User ID</label>
+                    <input type="number" class="form-control" name="userID" id="field_userID"
+                           formControlName="userID"/>
+                    <div *ngIf="editForm.get('userID')!.invalid && (editForm.get('userID')!.dirty || editForm.get('userID')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('userID')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('userID')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label"  for="field_umfrage">Umfrage</label>
+                    <label class="form-control-label" jhiTranslate="jpollApp.userAntwort.umfrage" for="field_umfrage">Umfrage</label>
                     <select class="form-control" id="field_umfrage" name="umfrage" formControlName="umfrage">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="umfrageOption.id === editForm.get('umfrage')!.value?.id ? editForm.get('umfrage')!.value : umfrageOption" *ngFor="let umfrageOption of umfrages; trackBy: trackById">{{ umfrageOption.id }}</option>
@@ -26,7 +36,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="field_antwort">Antwort</label>
+                    <label class="form-control-label" jhiTranslate="jpollApp.userAntwort.antwort" for="field_antwort">Antwort</label>
                     <select class="form-control" id="field_antwort" name="antwort" formControlName="antwort">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="antwortOption.id === editForm.get('antwort')!.value?.id ? editForm.get('antwort')!.value : antwortOption" *ngFor="let antwortOption of antworts; trackBy: trackById">{{ antwortOption.id }}</option>
@@ -36,11 +46,11 @@
 
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
-                    <fa-icon icon="ban"></fa-icon>&nbsp;<span >Cancel</span>
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
 
                 <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
-                    <fa-icon icon="save"></fa-icon>&nbsp;<span >Save</span>
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>
         </form>

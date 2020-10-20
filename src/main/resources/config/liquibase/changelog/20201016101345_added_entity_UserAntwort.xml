@@ -9,14 +9,14 @@
         <property name="autoIncrement" value="true"/>
 
     <!--
-        Added the entity Userantwort.
+        Added the entity UserAntwort.
     -->
     <changeSet id="20201016101345-1" author="jhipster">
         <createTable tableName="user_antwort">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="user" type="varchar(255)">
+            <column name="user_id" type="integer">
                 <constraints nullable="false" />
             </column>
             <column name="umfrage_id" type="bigint">
@@ -48,7 +48,7 @@
                   separator=";"
                   tableName="user_antwort">
             <column name="id" type="numeric"/>
-            <column name="user" type="string"/>
+            <column name="user_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

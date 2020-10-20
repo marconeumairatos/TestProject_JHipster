@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="userAntwort">
+            <h2><span jhiTranslate="jpollApp.userAntwort.detail.title">User Antwort</span> {{ userAntwort.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jpollApp.userAntwort.userID">User ID</span></dt>
+                <dd>
+                    <span>{{ userAntwort.userID }}</span>
+                </dd>
+                <dt><span jhiTranslate="jpollApp.userAntwort.umfrage">Umfrage</span></dt>
+                <dd>
+                    <div *ngIf="userAntwort.umfrage">
+                        <a [routerLink]="['/umfrage', userAntwort.umfrage?.id, 'view']">{{ userAntwort.umfrage?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jpollApp.userAntwort.antwort">Antwort</span></dt>
+                <dd>
+                    <div *ngIf="userAntwort.antwort">
+                        <a [routerLink]="['/antwort', userAntwort.antwort?.id, 'view']">{{ userAntwort.antwort?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/user-antwort', userAntwort.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
