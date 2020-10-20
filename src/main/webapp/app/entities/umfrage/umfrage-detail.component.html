@@ -20,11 +20,6 @@
                 <dd>
                     <span>{{ umfrage.status }}</span>
                 </dd>
-                
-
-                <div *ngFor="let antwort of antworts">
-                    <input name="antwortbutton" type="radio">{{antwort.text}}
-                </div>                
             </dl>
 
             <button type="submit"
@@ -37,11 +32,6 @@
                     [routerLink]="['/umfrage', umfrage.id, 'edit']"
                     class="btn btn-primary">
                 <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
-            </button>
-
-            <button type="button"
-                    class="btn btn-primary">
-                <fa-icon icon="check-circle"></fa-icon>&nbsp;<span>Vote</span>
             </button>
         </div>
     </div>

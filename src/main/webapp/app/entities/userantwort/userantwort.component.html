@@ -1,10 +1,10 @@
 <div>
     <h2 id="page-heading">
-        <span>Userantworts</span>
+        <span jhiTranslate="jpollApp.userantwort.home.title">Userantworts</span>
 
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-userantwort" [routerLink]="['/userantwort/new']">
             <fa-icon icon="plus"></fa-icon>
-            <span class="hidden-sm-down">
+            <span class="hidden-sm-down"  jhiTranslate="jpollApp.userantwort.home.createLabel">
             Create a new Userantwort
             </span>
         </button>
@@ -18,7 +18,7 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="Search Userantworts">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'jpollApp.userantwort.home.search' | translate }}">
 
                     <button class="input-group-append btn btn-info" (click)="search(currentSearch)">
                         <fa-icon icon="search"></fa-icon>
@@ -33,54 +33,42 @@
     </div>
 
     <div class="alert alert-warning" id="no-result" *ngIf="userantworts?.length === 0">
-        <span>No userantworts found</span>
+        <span jhiTranslate="jpollApp.userantwort.home.notFound">No userantworts found</span>
     </div>
 
     <div class="table-responsive" id="entities" *ngIf="userantworts && userantworts.length > 0">
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
                 <tr>
-                    <th scope="col" ><span>ID</span></th>
-                    <th scope="col" ><span>User</span></th>
-                    <th scope="col" ><span>Umfrage</span></th>
-                    <th scope="col" ><span>Antwort</span></th>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="jpollApp.userantwort.userID">User ID</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let userantwort of userantworts ;trackBy: trackId">
                     <td><a [routerLink]="['/userantwort', userantwort.id, 'view']">{{ userantwort.id }}</a></td>
-                    <td>{{ userantwort.user }}</td>
-                    <td>
-                        <div *ngIf="userantwort.umfrage">
-                            <a [routerLink]="['/umfrage', userantwort.umfrage?.id, 'view']" >{{ userantwort.umfrage?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="userantwort.antwort">
-                            <a [routerLink]="['/antwort', userantwort.antwort?.id, 'view']" >{{ userantwort.antwort?.id }}</a>
-                        </div>
-                    </td>
+                    <td>{{ userantwort.userID }}</td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"
                                     [routerLink]="['/userantwort', userantwort.id, 'view']"
                                     class="btn btn-info btn-sm">
                                 <fa-icon icon="eye"></fa-icon>
-                                <span class="d-none d-md-inline">View</span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                             </button>
 
                             <button type="submit"
                                     [routerLink]="['/userantwort', userantwort.id, 'edit']"
                                     class="btn btn-primary btn-sm">
                                 <fa-icon icon="pencil-alt"></fa-icon>
-                                <span class="d-none d-md-inline">Edit</span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                             </button>
 
                             <button type="submit" (click)="delete(userantwort)"
                                     class="btn btn-danger btn-sm">
                                 <fa-icon icon="times"></fa-icon>
-                                <span class="d-none d-md-inline">Delete</span>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                             </button>
                         </div>
                     </td>

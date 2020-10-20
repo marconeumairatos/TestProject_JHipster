@@ -1,0 +1,32 @@
+{
+  "name": "AntwortbyUser",
+  "fields": [
+    {
+      "fieldName": "userID",
+      "fieldType": "Integer",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "antwort",
+      "otherEntityRelationshipName": "antwortbyUser",
+      "relationshipName": "antwort",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201020083702",
+  "entityTableName": "antwortby_user",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

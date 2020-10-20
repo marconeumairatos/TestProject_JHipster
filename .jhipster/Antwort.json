@@ -12,9 +12,9 @@
   "relationships": [
     {
       "relationshipType": "one-to-many",
-      "otherEntityName": "userAntwort",
+      "otherEntityName": "antwortbyUser",
       "otherEntityRelationshipName": "antwort",
-      "relationshipName": "userAntwort"
+      "relationshipName": "antwortbyUser"
     },
     {
       "relationshipType": "many-to-one",

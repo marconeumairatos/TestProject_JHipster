@@ -1,0 +1,24 @@
+{
+  "jpollApp": {
+    "antwortbyUser": {
+      "home": {
+        "title": "Antwortby Users",
+        "createLabel": "Antwortby User erstellen",
+        "createOrEditLabel": "Antwortby User erstellen oder bearbeiten",
+        "search": "Suche nach Antwortby User",
+        "notFound": "No Antwortby Users found"
+      },
+      "created": "Antwortby User erstellt mit ID {{ param }}",
+      "updated": "Antwortby User aktualisiert mit ID {{ param }}",
+      "deleted": "Antwortby User gelöscht mit ID {{ param }}",
+      "delete": {
+        "question": "Soll Antwortby User {{ id }} wirklich dauerhaft gelöscht werden?"
+      },
+      "detail": {
+        "title": "Antwortby User"
+      },
+      "userID": "User ID",
+      "antwort": "Antwort"
+    }
+  }
+}

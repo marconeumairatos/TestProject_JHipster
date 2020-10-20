@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;
 
 /**
- * Spring Data  repository for the UserAntwort entity.
+ * Spring Data  repository for the Userantwort entity.
  */
 @SuppressWarnings("unused")
 @Repository

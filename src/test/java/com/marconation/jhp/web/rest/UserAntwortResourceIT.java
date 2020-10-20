@@ -29,35 +29,35 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
- * Integration tests for the {@link UserAntwortResource} REST controller.
+ * Integration tests for the {@link UserantwortResource} REST controller.
  */
 @SpringBootTest(classes = JpollApp.class)
 @ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
-public class UserAntwortResourceIT {
+public class UserantwortResourceIT {
 
     private static final Integer DEFAULT_USER_ID = 1;
     private static final Integer UPDATED_USER_ID = 2;
 
     @Autowired
-    private UserAntwortRepository userAntwortRepository;
+    private UserantwortRepository userantwortRepository;
 
     /**
      * This repository is mocked in the com.marconation.jhp.repository.search test package.
      *
-     * @see com.marconation.jhp.repository.search.UserAntwortSearchRepositoryMockConfiguration
+     * @see com.marconation.jhp.repository.search.UserantwortSearchRepositoryMockConfiguration
      */
     @Autowired
-    private UserAntwortSearchRepository mockUserAntwortSearchRepository;
+    private UserantwortSearchRepository mockUserantwortSearchRepository;
 
     @Autowired
     private EntityManager em;
 
     @Autowired
-    private MockMvc restUserAntwortMockMvc;
+    private MockMvc restUserantwortMockMvc;
 
-    private UserAntwort userAntwort;
+    private Userantwort userantwort;
 
     /**
      * Create an entity for this test.
@@ -65,10 +65,10 @@ public class UserAntwortResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static UserAntwort createEntity(EntityManager em) {
-        UserAntwort userAntwort = new UserAntwort()
+    public static Userantwort createEntity(EntityManager em) {
+        Userantwort userantwort = new Userantwort()
             .userID(DEFAULT_USER_ID);
-        return userAntwort;
+        return userantwort;
     }
     /**
      * Create an updated entity for this test.
@@ -76,198 +76,198 @@ public class UserAntwortResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static UserAntwort createUpdatedEntity(EntityManager em) {
-        UserAntwort userAntwort = new UserAntwort()
+    public static Userantwort createUpdatedEntity(EntityManager em) {
+        Userantwort userantwort = new Userantwort()
             .userID(UPDATED_USER_ID);
-        return userAntwort;
+        return userantwort;
     }
 
     @BeforeEach
     public void initTest() {
-        userAntwort = createEntity(em);
+        userantwort = createEntity(em);
     }
 
     @Test
     @Transactional
-    public void createUserAntwort() throws Exception {
-        int databaseSizeBeforeCreate = userAntwortRepository.findAll().size();
-        // Create the UserAntwort
-        restUserAntwortMockMvc.perform(post("/api/user-antworts")
+    public void createUserantwort() throws Exception {
+        int databaseSizeBeforeCreate = userantwortRepository.findAll().size();
+        // Create the Userantwort
+        restUserantwortMockMvc.perform(post("/api/userantworts")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(userAntwort)))
+            .content(TestUtil.convertObjectToJsonBytes(userantwort)))
             .andExpect(status().isCreated());
 
-        // Validate the UserAntwort in the database
-        List<UserAntwort> userAntwortList = userAntwortRepository.findAll();
-        assertThat(userAntwortList).hasSize(databaseSizeBeforeCreate + 1);
-        UserAntwort testUserAntwort = userAntwortList.get(userAntwortList.size() - 1);
-        assertThat(testUserAntwort.getUserID()).isEqualTo(DEFAULT_USER_ID);
+        // Validate the Userantwort in the database
+        List<Userantwort> userantwortList = userantwortRepository.findAll();
+        assertThat(userantwortList).hasSize(databaseSizeBeforeCreate + 1);
+        Userantwort testUserantwort = userantwortList.get(userantwortList.size() - 1);
+        assertThat(testUserantwort.getUserID()).isEqualTo(DEFAULT_USER_ID);
 
-        // Validate the UserAntwort in Elasticsearch
-        verify(mockUserAntwortSearchRepository, times(1)).save(testUserAntwort);
+        // Validate the Userantwort in Elasticsearch
+        verify(mockUserantwortSearchRepository, times(1)).save(testUserantwort);
     }
 
     @Test
     @Transactional
-    public void createUserAntwortWithExistingId() throws Exception {
-        int databaseSizeBeforeCreate = userAntwortRepository.findAll().size();
+    public void createUserantwortWithExistingId() throws Exception {
+        int databaseSizeBeforeCreate = userantwortRepository.findAll().size();
 
-        // Create the UserAntwort with an existing ID
-        userAntwort.setId(1L);
+        // Create the Userantwort with an existing ID
+        userantwort.setId(1L);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restUserAntwortMockMvc.perform(post("/api/user-antworts")
+        restUserantwortMockMvc.perform(post("/api/userantworts")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(userAntwort)))
+            .content(TestUtil.convertObjectToJsonBytes(userantwort)))
             .andExpect(status().isBadRequest());
 
-        // Validate the UserAntwort in the database
-        List<UserAntwort> userAntwortList = userAntwortRepository.findAll();
-        assertThat(userAntwortList).hasSize(databaseSizeBeforeCreate);
+        // Validate the Userantwort in the database
+        List<Userantwort> userantwortList = userantwortRepository.findAll();
+        assertThat(userantwortList).hasSize(databaseSizeBeforeCreate);
 
-        // Validate the UserAntwort in Elasticsearch
-        verify(mockUserAntwortSearchRepository, times(0)).save(userAntwort);
+        // Validate the Userantwort in Elasticsearch
+        verify(mockUserantwortSearchRepository, times(0)).save(userantwort);
     }
 
 
     @Test
     @Transactional
     public void checkUserIDIsRequired() throws Exception {
-        int databaseSizeBeforeTest = userAntwortRepository.findAll().size();
+        int databaseSizeBeforeTest = userantwortRepository.findAll().size();
         // set the field null
-        userAntwort.setUserID(null);
+        userantwort.setUserID(null);
 
-        // Create the UserAntwort, which fails.
+        // Create the Userantwort, which fails.
 
 
-        restUserAntwortMockMvc.perform(post("/api/user-antworts")
+        restUserantwortMockMvc.perform(post("/api/userantworts")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(userAntwort)))
+            .content(TestUtil.convertObjectToJsonBytes(userantwort)))
             .andExpect(status().isBadRequest());
 
-        List<UserAntwort> userAntwortList = userAntwortRepository.findAll();
-        assertThat(userAntwortList).hasSize(databaseSizeBeforeTest);
+        List<Userantwort> userantwortList = userantwortRepository.findAll();
+        assertThat(userantwortList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
     @Transactional
-    public void getAllUserAntworts() throws Exception {
+    public void getAllUserantworts() throws Exception {
         // Initialize the database
-        userAntwortRepository.saveAndFlush(userAntwort);
+        userantwortRepository.saveAndFlush(userantwort);
 
-        // Get all the userAntwortList
-        restUserAntwortMockMvc.perform(get("/api/user-antworts?sort=id,desc"))
+        // Get all the userantwortList
+        restUserantwortMockMvc.perform(get("/api/userantworts?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(userAntwort.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(userantwort.getId().intValue())))
             .andExpect(jsonPath("$.[*].userID").value(hasItem(DEFAULT_USER_ID)));
     }
     
     @Test
     @Transactional
-    public void getUserAntwort() throws Exception {
+    public void getUserantwort() throws Exception {
         // Initialize the database
-        userAntwortRepository.saveAndFlush(userAntwort);
+        userantwortRepository.saveAndFlush(userantwort);
 
-        // Get the userAntwort
-        restUserAntwortMockMvc.perform(get("/api/user-antworts/{id}", userAntwort.getId()))
+        // Get the userantwort
+        restUserantwortMockMvc.perform(get("/api/userantworts/{id}", userantwort.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(userAntwort.getId().intValue()))
+            .andExpect(jsonPath("$.id").value(userantwort.getId().intValue()))
             .andExpect(jsonPath("$.userID").value(DEFAULT_USER_ID));
     }
     @Test
     @Transactional
-    public void getNonExistingUserAntwort() throws Exception {
-        // Get the userAntwort
-        restUserAntwortMockMvc.perform(get("/api/user-antworts/{id}", Long.MAX_VALUE))
+    public void getNonExistingUserantwort() throws Exception {
+        // Get the userantwort
+        restUserantwortMockMvc.perform(get("/api/userantworts/{id}", Long.MAX_VALUE))
             .andExpect(status().isNotFound());
     }
 
     @Test
     @Transactional
-    public void updateUserAntwort() throws Exception {
+    public void updateUserantwort() throws Exception {
         // Initialize the database
-        userAntwortRepository.saveAndFlush(userAntwort);
+        userantwortRepository.saveAndFlush(userantwort);
 
-        int databaseSizeBeforeUpdate = userAntwortRepository.findAll().size();
+        int databaseSizeBeforeUpdate = userantwortRepository.findAll().size();
 
-        // Update the userAntwort
-        UserAntwort updatedUserAntwort = userAntwortRepository.findById(userAntwort.getId()).get();
-        // Disconnect from session so that the updates on updatedUserAntwort are not directly saved in db
-        em.detach(updatedUserAntwort);
-        updatedUserAntwort
+        // Update the userantwort
+        Userantwort updatedUserantwort = userantwortRepository.findById(userantwort.getId()).get();
+        // Disconnect from session so that the updates on updatedUserantwort are not directly saved in db
+        em.detach(updatedUserantwort);
+        updatedUserantwort
             .userID(UPDATED_USER_ID);
 
-        restUserAntwortMockMvc.perform(put("/api/user-antworts")
+        restUserantwortMockMvc.perform(put("/api/userantworts")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(updatedUserAntwort)))
+            .content(TestUtil.convertObjectToJsonBytes(updatedUserantwort)))
             .andExpect(status().isOk());
 
-        // Validate the UserAntwort in the database
-        List<UserAntwort> userAntwortList = userAntwortRepository.findAll();
-        assertThat(userAntwortList).hasSize(databaseSizeBeforeUpdate);
-        UserAntwort testUserAntwort = userAntwortList.get(userAntwortList.size() - 1);
-        assertThat(testUserAntwort.getUserID()).isEqualTo(UPDATED_USER_ID);
+        // Validate the Userantwort in the database
+        List<Userantwort> userantwortList = userantwortRepository.findAll();
+        assertThat(userantwortList).hasSize(databaseSizeBeforeUpdate);
+        Userantwort testUserantwort = userantwortList.get(userantwortList.size() - 1);
+        assertThat(testUserantwort.getUserID()).isEqualTo(UPDATED_USER_ID);
 
-        // Validate the UserAntwort in Elasticsearch
-        verify(mockUserAntwortSearchRepository, times(1)).save(testUserAntwort);
+        // Validate the Userantwort in Elasticsearch
+        verify(mockUserantwortSearchRepository, times(1)).save(testUserantwort);
     }
 
     @Test
     @Transactional
-    public void updateNonExistingUserAntwort() throws Exception {
-        int databaseSizeBeforeUpdate = userAntwortRepository.findAll().size();
+    public void updateNonExistingUserantwort() throws Exception {
+        int databaseSizeBeforeUpdate = userantwortRepository.findAll().size();
 
         // If the entity doesn't have an ID, it will throw BadRequestAlertException
-        restUserAntwortMockMvc.perform(put("/api/user-antworts")
+        restUserantwortMockMvc.perform(put("/api/userantworts")
             .contentType(MediaType.APPLICATION_JSON)
-            .content(TestUtil.convertObjectToJsonBytes(userAntwort)))
+            .content(TestUtil.convertObjectToJsonBytes(userantwort)))
             .andExpect(status().isBadRequest());
 
-        // Validate the UserAntwort in the database
-        List<UserAntwort> userAntwortList = userAntwortRepository.findAll();
-        assertThat(userAntwortList).hasSize(databaseSizeBeforeUpdate);
+        // Validate the Userantwort in the database
+        List<Userantwort> userantwortList = userantwortRepository.findAll();
+        assertThat(userantwortList).hasSize(databaseSizeBeforeUpdate);
 
-        // Validate the UserAntwort in Elasticsearch
-        verify(mockUserAntwortSearchRepository, times(0)).save(userAntwort);
+        // Validate the Userantwort in Elasticsearch
+        verify(mockUserantwortSearchRepository, times(0)).save(userantwort);
     }
 
     @Test
     @Transactional
-    public void deleteUserAntwort() throws Exception {
+    public void deleteUserantwort() throws Exception {
         // Initialize the database
-        userAntwortRepository.saveAndFlush(userAntwort);
+        userantwortRepository.saveAndFlush(userantwort);
 
-        int databaseSizeBeforeDelete = userAntwortRepository.findAll().size();
+        int databaseSizeBeforeDelete = userantwortRepository.findAll().size();
 
-        // Delete the userAntwort
-        restUserAntwortMockMvc.perform(delete("/api/user-antworts/{id}", userAntwort.getId())
+        // Delete the userantwort
+        restUserantwortMockMvc.perform(delete("/api/userantworts/{id}", userantwort.getId())
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isNoContent());
 
         // Validate the database contains one less item
-        List<UserAntwort> userAntwortList = userAntwortRepository.findAll();
-        assertThat(userAntwortList).hasSize(databaseSizeBeforeDelete - 1);
+        List<Userantwort> userantwortList = userantwortRepository.findAll();
+        assertThat(userantwortList).hasSize(databaseSizeBeforeDelete - 1);
 
-        // Validate the UserAntwort in Elasticsearch
-        verify(mockUserAntwortSearchRepository, times(1)).deleteById(userAntwort.getId());
+        // Validate the Userantwort in Elasticsearch
+        verify(mockUserantwortSearchRepository, times(1)).deleteById(userantwort.getId());
     }
 
     @Test
     @Transactional
-    public void searchUserAntwort() throws Exception {
+    public void searchUserantwort() throws Exception {
         // Configure the mock search repository
         // Initialize the database
-        userAntwortRepository.saveAndFlush(userAntwort);
-        when(mockUserAntwortSearchRepository.search(queryStringQuery("id:" + userAntwort.getId())))
-            .thenReturn(Collections.singletonList(userAntwort));
+        userantwortRepository.saveAndFlush(userantwort);
+        when(mockUserantwortSearchRepository.search(queryStringQuery("id:" + userantwort.getId())))
+            .thenReturn(Collections.singletonList(userantwort));
 
-        // Search the userAntwort
-        restUserAntwortMockMvc.perform(get("/api/_search/user-antworts?query=id:" + userAntwort.getId()))
+        // Search the userantwort
+        restUserantwortMockMvc.perform(get("/api/_search/userantworts?query=id:" + userantwort.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(userAntwort.getId().intValue())))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(userantwort.getId().intValue())))
             .andExpect(jsonPath("$.[*].userID").value(hasItem(DEFAULT_USER_ID)));
     }
 }

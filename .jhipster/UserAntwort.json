@@ -1,5 +1,5 @@
 {
-  "name": "UserAntwort",
+  "name": "Userantwort",
   "fields": [
     {
       "fieldName": "userID",
@@ -9,24 +9,9 @@
       ]
     }
   ],
-  "relationships": [
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "umfrage",
-      "otherEntityRelationshipName": "userAntwort",
-      "relationshipName": "umfrage",
-      "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "antwort",
-      "otherEntityRelationshipName": "userAntwort",
-      "relationshipName": "antwort",
-      "otherEntityField": "id"
-    }
-  ],
+  "relationships": [],
   "changelogDate": "20201016101345",
-  "entityTableName": "user_antwort",
+  "entityTableName": "userantwort",
   "dto": "no",
   "pagination": "no",
   "service": "no",

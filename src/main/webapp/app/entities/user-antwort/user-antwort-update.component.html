@@ -26,22 +26,6 @@
                         </small>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jpollApp.userAntwort.umfrage" for="field_umfrage">Umfrage</label>
-                    <select class="form-control" id="field_umfrage" name="umfrage" formControlName="umfrage">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="umfrageOption.id === editForm.get('umfrage')!.value?.id ? editForm.get('umfrage')!.value : umfrageOption" *ngFor="let umfrageOption of umfrages; trackBy: trackById">{{ umfrageOption.id }}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="jpollApp.userAntwort.antwort" for="field_antwort">Antwort</label>
-                    <select class="form-control" id="field_antwort" name="antwort" formControlName="antwort">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="antwortOption.id === editForm.get('antwort')!.value?.id ? editForm.get('antwort')!.value : antwortOption" *ngFor="let antwortOption of antworts; trackBy: trackById">{{ antwortOption.id }}</option>
-                    </select>
-                </div>
             </div>
 
             <div>

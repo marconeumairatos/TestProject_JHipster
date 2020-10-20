@@ -42,8 +42,6 @@
                 <tr>
                     <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
                     <th scope="col" ><span jhiTranslate="jpollApp.userAntwort.userID">User ID</span></th>
-                    <th scope="col" ><span jhiTranslate="jpollApp.userAntwort.umfrage">Umfrage</span></th>
-                    <th scope="col" ><span jhiTranslate="jpollApp.userAntwort.antwort">Antwort</span></th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -51,16 +49,6 @@
                 <tr *ngFor="let userAntwort of userAntworts ;trackBy: trackId">
                     <td><a [routerLink]="['/user-antwort', userAntwort.id, 'view']">{{ userAntwort.id }}</a></td>
                     <td>{{ userAntwort.userID }}</td>
-                    <td>
-                        <div *ngIf="userAntwort.umfrage">
-                            <a [routerLink]="['/umfrage', userAntwort.umfrage?.id, 'view']" >{{ userAntwort.umfrage?.id }}</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div *ngIf="userAntwort.antwort">
-                            <a [routerLink]="['/antwort', userAntwort.antwort?.id, 'view']" >{{ userAntwort.antwort?.id }}</a>
-                        </div>
-                    </td>
                     <td class="text-right">
                         <div class="btn-group">
                             <button type="submit"

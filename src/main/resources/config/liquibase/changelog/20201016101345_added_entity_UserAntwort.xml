@@ -9,21 +9,15 @@
         <property name="autoIncrement" value="true"/>
 
     <!--
-        Added the entity UserAntwort.
+        Added the entity Userantwort.
     -->
     <changeSet id="20201016101345-1" author="jhipster">
-        <createTable tableName="user_antwort">
+        <createTable tableName="userantwort">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="user_id" type="integer">
                 <constraints nullable="false" />
-            </column>
-            <column name="umfrage_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-            <column name="antwort_id" type="bigint">
-                <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
@@ -44,9 +38,9 @@
     -->
     <changeSet id="20201016101345-1-data" author="jhipster" context="faker">
         <loadData
-                  file="config/liquibase/fake-data/user_antwort.csv"
+                  file="config/liquibase/fake-data/userantwort.csv"
                   separator=";"
-                  tableName="user_antwort">
+                  tableName="userantwort">
             <column name="id" type="numeric"/>
             <column name="user_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->

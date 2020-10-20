@@ -270,5 +270,4 @@ public class AntwortResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(antwort.getId().intValue())))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)));
     }
-
 }

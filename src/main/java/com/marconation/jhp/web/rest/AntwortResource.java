@@ -24,15 +24,6 @@ import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.data.jpa.domain.Specification;
-import java.util.ArrayList;
-import javax.persistence.criteria.*;
-  
-
 /**
  * REST controller for managing {@link com.marconation.jhp.domain.Antwort}.
  */
@@ -47,11 +38,11 @@ public class AntwortResource {
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
+
     private final AntwortRepository antwortRepository;
 
     private final AntwortSearchRepository antwortSearchRepository;
 
-    
     public AntwortResource(AntwortRepository antwortRepository, AntwortSearchRepository antwortSearchRepository) {
         this.antwortRepository = antwortRepository;
         this.antwortSearchRepository = antwortSearchRepository;
@@ -151,25 +142,4 @@ public class AntwortResource {
             .stream(antwortSearchRepository.search(queryStringQuery(query)).spliterator(), false)
         .collect(Collectors.toList());
     }
-
-      /**
-     * {@code GET  /antworts/:id} : get the "id" antwort.
-     *
-     * @param id the id of the antwort to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the antwort, or with status {@code 404 (Not Found)}.
-     */
-    @GetMapping("/antwortforumfrage/{id}")
-    public List<Antwort> findByUmfrageId(@PathVariable Long id){
-        return antwortRepository.findByUmfrageId(id);
-
-
-
-    
-    }
-
-
-
-
-
-
 }

@@ -12,11 +12,15 @@ entity Antwort {
 }
 
 
-entity UserAntwort {
+entity Userantwort {
 	ID Integer required,
     UserID Integer required 
 }
 
+entity AntwortbyUser {
+	ID Integer required,
+    UserID Integer required 
+}
 
 
 /**
@@ -27,10 +31,6 @@ relationship OneToMany {
 }
 
 relationship OneToMany {
-    Umfrage to UserAntwort
-}
-
-relationship OneToMany {
-    Antwort to UserAntwort
+    Antwort to AntwortbyUser
 }
 
